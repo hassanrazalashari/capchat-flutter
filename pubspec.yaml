@@ -45,6 +45,8 @@ dependencies:
   just_audio: ^0.9.36 
   build_runner: ^2.4.7
   permission_handler: ^11.0.1
+  audio_waveforms: ^1.2.0
+  audioplayers: ^6.2.0
 
 dev_dependencies:
   flutter_test:
