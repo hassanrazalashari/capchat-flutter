@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:chatapp/utils/gradient.dart';
 
-class AudioCallingScreen extends StatelessWidget {
+class AudioCallingScreen extends StatefulWidget {
   const AudioCallingScreen({super.key});
+
+  @override
+  State<AudioCallingScreen> createState() => _AudioCallingScreenState();
+}
+
+class _AudioCallingScreenState extends State<AudioCallingScreen> {
+  bool _isMicOn = true;
+  bool _isSpeakerOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +23,6 @@ class AudioCallingScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: Column(
@@ -27,7 +34,7 @@ class AudioCallingScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Text(
+                    const Text(
                       "Salman",
                       style: TextStyle(
                         color: Colors.white,
@@ -36,7 +43,7 @@ class AudioCallingScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Text(
+                    const Text(
                       "Calling...",
                       style: TextStyle(
                         color: Colors.white70,
@@ -46,7 +53,6 @@ class AudioCallingScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // const SizedBox(height: 50),
               Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.1,
@@ -65,16 +71,22 @@ class AudioCallingScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 30),
                       child: IconButton(
-                        icon: const Icon(Icons.volume_up,
-                            color: Colors.white, size: 30),
-                        onPressed: () {},
+                        icon: Icon(
+                          _isSpeakerOn ? Icons.volume_up : Icons.volume_off,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isSpeakerOn = !_isSpeakerOn;
+                          });
+                        },
                       ),
                     ),
-                    // const SizedBox(width: 40),
                     Container(
                       width: 60,
                       height: 60,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.red,
                         shape: BoxShape.circle,
                       ),
@@ -86,13 +98,19 @@ class AudioCallingScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                    // const SizedBox(width: 40),
                     Padding(
-                      padding: EdgeInsets.only(right: 30),
+                      padding: const EdgeInsets.only(right: 30),
                       child: IconButton(
-                        icon: const Icon(Icons.mic_off,
-                            color: Colors.white, size: 30),
-                        onPressed: () {},
+                        icon: Icon(
+                          _isMicOn ? Icons.mic : Icons.mic_off,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isMicOn = !_isMicOn;
+                          });
+                        },
                       ),
                     ),
                   ],
